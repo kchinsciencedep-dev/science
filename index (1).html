@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Science Department | Kathangachini Senior School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #F2F5F8;
+  --ink: #12263A;
+  --muted: #4B5D6E;
+  --line: #CBD5DF;
+  --focus: #1F4FD8;
+  --bio: #1E7F55;   --bio-ink: #FFFFFF;
+  --chem: #6B3FC4;  --chem-ink: #FFFFFF;
+  --phys: #1F4FD8;  --phys-ink: #FFFFFF;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1B27; --ink: #EAF0F6; --muted: #A6B5C4; --line: #2B3E51; --focus: #8FB0FF;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1B27; --ink: #EAF0F6; --muted: #A6B5C4; --line: #2B3E51; --focus: #8FB0FF;
+}
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.65; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
+p { margin: 0 0 1em; max-width: 62ch; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 800; text-decoration: none; font-size: 1.05rem; letter-spacing: -0.01em; }
+.brand small { display: block; font-weight: 500; font-size: .8rem; color: var(--muted); letter-spacing: 0; }
+nav ul { list-style: none; display: flex; gap: 1.4rem; margin: 0; padding: 0; flex-wrap: wrap; }
+nav a { font-family: var(--display); font-weight: 500; text-decoration: none; font-size: .95rem; padding: .4rem 0; border-bottom: 2px solid transparent; }
+nav a:hover { border-bottom-color: currentColor; }
+
+/* hero */
+.hero { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5.4rem); font-weight: 800; letter-spacing: -0.035em; max-width: 14ch; }
+.hero p.lede { font-size: 1.2rem; color: var(--muted); margin-top: 1.25rem; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 2.5rem; padding: 0; list-style: none; }
+.tile { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; min-height: 15rem; width: 100%; padding: 1.1rem 1.1rem 1.2rem; border-radius: 6px; position: relative; transition: transform .18s ease, box-shadow .18s ease; }
+.tile:hover { transform: translateY(-4px); }
+.tile:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.tile[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--bg), 0 0 0 6px var(--ink); }
+.tile .sym { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 8vw, 5.2rem); line-height: .9; letter-spacing: -0.04em; }
+.tile .name { font-family: var(--display); font-weight: 700; font-size: 1.15rem; margin-top: auto; }
+.tile .what { display: block; font-size: .95rem; line-height: 1.4; margin-top: .3rem; opacity: .95; }
+.t-bio { background: var(--bio); color: var(--bio-ink); }
+.t-chem { background: var(--chem); color: var(--chem-ink); }
+.t-phys { background: var(--phys); color: var(--phys-ink); }
+.hint { margin: .9rem 0 0; font-size: .95rem; color: var(--muted); }
+
+/* sections */
+section.block { padding: clamp(2.5rem, 6vw, 4rem) 0; border-top: 1px solid var(--line); }
+.head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.reset { font-family: var(--display); font-weight: 500; font-size: .95rem; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: .35rem .9rem; cursor: pointer; }
+.reset[hidden] { display: none; }
+.reset:hover { border-color: var(--ink); }
+
+.feed { list-style: none; margin: 0; padding: 0; }
+.feed li { display: grid; grid-template-columns: 8.5rem 1fr; gap: .5rem 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+.feed li[hidden] { display: none; }
+.when { font-family: var(--display); font-weight: 700; }
+.when span { display: block; font-weight: 500; font-size: .9rem; color: var(--muted); }
+.feed h3 { margin-bottom: .3rem; }
+.feed p { margin: 0; color: var(--muted); }
+.tag { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--display); font-size: .85rem; font-weight: 500; color: var(--muted); margin-bottom: .35rem; }
+.tag::before { content: ""; width: .7rem; height: .7rem; border-radius: 2px; background: var(--c); }
+.c-bio { --c: var(--bio); } .c-chem { --c: var(--chem); } .c-phys { --c: var(--phys); } .c-all { --c: var(--ink); }
+
+.programs { width: 100%; border-collapse: collapse; }
+.programs th, .programs td { text-align: left; vertical-align: top; padding: .9rem 1rem .9rem 0; border-bottom: 1px solid var(--line); }
+.programs th { font-family: var(--display); font-weight: 700; white-space: nowrap; }
+.programs td { color: var(--muted); }
+.scroll-x { overflow-x: auto; }
+.sr { position: absolute; left: -9999px; }
+
+.labs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.labs p { color: var(--muted); }
+
+.welcome { margin: 0; font-size: 1.25rem; line-height: 1.55; max-width: 52ch; }
+.staff { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem 2rem; }
+.staff li { border-left: 4px solid var(--c); padding-left: .9rem; transition: opacity .2s ease; }
+.staff.filtering li:not(.on) { opacity: .35; }
+.staff strong { font-family: var(--display); font-weight: 700; display: block; }
+.staff span { color: var(--muted); font-size: .95rem; }
+
+footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; }
+footer .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+footer h3 { margin-bottom: .5rem; }
+footer p { margin: 0 0 .3rem; color: var(--muted); }
+footer a { text-underline-offset: 3px; }
+.call { display: inline-block; margin-top: .3rem; font-family: var(--display); font-weight: 700; text-decoration: none; border: 2px solid var(--ink); border-radius: 999px; padding: .4rem 1.1rem; color: var(--ink); }
+.call:hover { background: var(--ink); color: var(--bg); }
+.note { margin-top: 2rem; font-size: .9rem; color: var(--muted); }
+
+/* one page-load moment */
+@media (prefers-reduced-motion: no-preference) {
+  .tile { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .tiles li:nth-child(2) .tile { animation-delay: .1s; }
+  .tiles li:nth-child(3) .tile { animation-delay: .2s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tile, .staff li { transition: none; } }
+
+@media (max-width: 860px) {
+  .tiles { grid-template-columns: 1fr; }
+  .tile { min-height: 11rem; }
+  .labs, footer .grid { grid-template-columns: 1fr; }
+  .staff { grid-template-columns: 1fr 1fr; }
+  .feed li { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) { .staff { grid-template-columns: 1fr; } nav ul { gap: 1rem; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Science Department<small>Kathangachini Senior School</small></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#news">News and events</a></li>
+        <li><a href="#programs">Subjects</a></li>
+        <li><a href="#labs">Labs</a></li>
+        <li><a href="#people">Our team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Ask, test, find out.</h1>
+      <p class="lede">The Science Department at Kathangachini Senior School teaches biology, chemistry and physics from Grade 10 and Form 3 to Form 4. Pick a subject to see its news and its teacher.</p>
+
+      <ul class="tiles" aria-label="Subjects">
+        <li><button class="tile t-bio" data-filter="bio" aria-pressed="false">
+          <span class="sym" aria-hidden="true">Bi</span>
+          <span><span class="name">Biology</span><span class="what">Cells, living things and how they depend on each other</span></span>
+        </button></li>
+        <li><button class="tile t-chem" data-filter="chem" aria-pressed="false">
+          <span class="sym" aria-hidden="true">Ch</span>
+          <span><span class="name">Chemistry</span><span class="what">Reactions, materials and safe lab technique</span></span>
+        </button></li>
+        <li><button class="tile t-phys" data-filter="phys" aria-pressed="false">
+          <span class="sym" aria-hidden="true">Ph</span>
+          <span><span class="name">Physics</span><span class="what">Forces, energy, waves and electricity</span></span>
+        </button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="news">
+    <div class="wrap">
+      <div class="head-row">
+        <h2>News and events</h2>
+        <button class="reset" id="reset" hidden>Show all subjects</button>
+      </div>
+      <p class="hint" id="status" role="status" aria-live="polite" style="margin:-.75rem 0 1rem">Showing all subjects.</p>
+      <ul class="feed" id="feed">
+        <li data-d="all">
+          <div class="when">6 Oct<span>Monday, 9:00</span></div>
+          <div><span class="tag c-all">Whole department</span><h3>Science fair project sign-up opens</h3><p>Students choose a question, a method and a partner. Sign-up closes on 23 October.</p></div>
+        </li>
+        <li data-d="phys">
+          <div class="when">14 Oct<span>Wednesday, 13:30</span></div>
+          <div><span class="tag c-phys">Physics</span><h3>Bridge-building challenge</h3><p>Teams build a bridge from paper and tape, then load it until it fails.</p></div>
+        </li>
+        <li data-d="bio">
+          <div class="when">20 Oct<span>Tuesday, 10:00</span></div>
+          <div><span class="tag c-bio">Biology</span><h3>Field study trip</h3><p>Classes collect and record living things in the school surroundings.</p></div>
+        </li>
+        <li data-d="chem">
+          <div class="when">28 Oct<span>Wednesday, 14:00</span></div>
+          <div><span class="tag c-chem">Chemistry</span><h3>Lab safety refresher</h3><p>Required before practical work. Covers goggles, spills and waste disposal.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="programs">
+    <div class="wrap">
+      <h2 style="margin-bottom:1.5rem">What we teach</h2>
+      <div class="scroll-x">
+        <table class="programs">
+          <thead class="sr"><tr><th>Subject</th><th>Classes</th><th>Teacher</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Biology</th><td>Grade 10, Form 3 and Form 4</td><td>Mr Ruben</td></tr>
+            <tr><th scope="row">Chemistry</th><td>Grade 10, Form 3 and Form 4</td><td>Mr Murithi</td></tr>
+            <tr><th scope="row">Physics</th><td>Grade 10, Form 3 and Form 4</td><td>Mr Lawi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="labs">
+    <div class="wrap">
+      <h2 style="margin-bottom:1.5rem">Our laboratories</h2>
+      <div class="labs">
+        <div><h3>Biology</h3><p>Practical lessons with microscopes, specimens and field work.</p></div>
+        <div><h3>Chemistry</h3><p>Experiments run with safety equipment and supervision.</p></div>
+        <div><h3>Physics</h3><p>Hands-on work with circuits, forces and measurements.</p></div>
+      </div>
+      <p style="margin-top:1.5rem;color:var(--muted)">Equipment and chemicals are managed by our lab attendant, Mr Munene.</p>
+    </div>
+  </section>
+
+  <section class="block" id="people">
+    <div class="wrap">
+      <h2 style="margin-bottom:1.5rem">Our team</h2>
+      <p class="welcome">Welcome to the Science Department at Kathangachini Senior School. Our students learn by measuring, testing and asking why, and our teachers keep lessons close to real practical work.</p>
+      <ul class="staff" id="staff">
+        <li data-d="bio" style="--c:var(--bio)"><strong>Mr Ruben</strong><span>Biology teacher</span></li>
+        <li data-d="chem" style="--c:var(--chem)"><strong>Mr Murithi</strong><span>Chemistry teacher</span></li>
+        <li data-d="phys" style="--c:var(--phys)"><strong>Mr Lawi</strong><span>Physics teacher</span></li>
+        <li data-d="all" style="--c:var(--ink)"><strong>Mr Munene</strong><span>Lab attendant</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <div><h3>School</h3><p>Kathangachini Senior School</p><p>Science Department</p></div>
+      <div><h3>Call the department</h3><p>Grade 10, Form 3 and Form 4 parents and students can reach the department assistant by phone.</p><a class="call" href="tel:+254742519786">0742 519 786</a></div>
+      <div><h3>For students</h3><p>Lab access and equipment: ask the lab attendant, Mr Munene.</p><p>Subject questions: ask your subject teacher.</p></div>
+    </div>
+    <p class="note">© Science Department, Kathangachini Senior School</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var tiles = document.querySelectorAll('.tile');
+  var items = document.querySelectorAll('#feed li');
+  var staff = document.getElementById('staff');
+  var people = staff.querySelectorAll('li');
+  var reset = document.getElementById('reset');
+  var status = document.getElementById('status');
+  var names = { bio: 'Biology', chem: 'Chemistry', phys: 'Physics' };
+  var current = null;
+
+  function apply(f) {
+    current = f;
+    tiles.forEach(function (t) { t.setAttribute('aria-pressed', String(t.dataset.filter === f)); });
+    var shown = 0;
+    items.forEach(function (li) {
+      var show = !f || li.dataset.d === f || li.dataset.d === 'all';
+      li.hidden = !show;
+      if (show) shown++;
+    });
+    staff.classList.toggle('filtering', !!f);
+    people.forEach(function (li) {
+      li.classList.toggle('on', !!f && (li.dataset.d === f || li.dataset.d === 'all'));
+    });
+    reset.hidden = !f;
+    status.textContent = f ? 'Showing ' + names[f] + ' and whole-department items (' + shown + ').' : 'Showing all subjects.';
+  }
+
+  tiles.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var f = t.dataset.filter === current ? null : t.dataset.filter;
+      apply(f);
+      if (f) document.getElementById('news').scrollIntoView();
+    });
+  });
+  reset.addEventListener('click', function () { apply(null); });
+})();
+</script>
+</body>
+</html>
